@@ -10,8 +10,7 @@ SELECT
     p.name AS property_name,
     p.location
 FROM Booking b
-INNER JOIN User u ON b.user_id = u.user_id
-INNER JOIN Property p ON b.property_id = p.property_id;
+INNER JOIN User u ON b.user_id = u.user_id;
 
 "a query using aLEFT JOIN to retrieve all properties and their reviews, including properties that have no reviews."
 SELECT 
@@ -23,7 +22,8 @@ SELECT
     r.comment,
     r.created_at AS review_date
 FROM Property p
-LEFT JOIN Review r ON p.property_id = r.property_id;
+LEFT JOIN Review r ON p.property_id = r.property_id
+ORDER BY p.property_id, r.created_at;
 
 "a query using a FULL OUTER JOIN to retrieve all users and all bookings, even if the user has no booking or a booking is not linked to a user."
 SELECT 
