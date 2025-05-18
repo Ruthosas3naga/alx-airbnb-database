@@ -12,7 +12,8 @@ GROUP BY u.user_id, u.first_name, u.last_name;
 SELECT 
     property_id,
     total_bookings,
-    ROW_NUMBER() OVER (ORDER BY total_bookings DESC) AS booking_rank
+    ROW_NUMBER() OVER (ORDER BY total_bookings DESC) AS row_number_rank,
+    RANK() OVER (ORDER BY total_bookings DESC) AS rank_with_ties
 FROM (
     SELECT 
         p.property_id,
