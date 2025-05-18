@@ -13,3 +13,19 @@ CREATE INDEX idx_booking_user_id ON "Booking"(user_id);
 CREATE INDEX idx_booking_property_id ON "Booking"(property_id);
 CREATE INDEX idx_booking_dates ON "Booking"(start_date, end_date);
 CREATE INDEX idx_booking_status ON "Booking"(status);
+
+
+"before indexing"
+EXPLAIN ANALYZE
+SELECT *
+FROM Booking
+WHERE user_id = '123e4567-e89b-12d3-a456-426614174000'
+  AND status = 'confirmed';
+
+"After indexing"
+-- After running the index script
+EXPLAIN ANALYZE
+SELECT *
+FROM Booking
+WHERE user_id = '123e4567-e89b-12d3-a456-426614174000'
+  AND status = 'confirmed';
